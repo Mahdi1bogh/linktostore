@@ -14,15 +14,19 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { CopyIcon } from 'lucide-react';
 const copyToClipboard = () => {
-  const textToCopy = document.getElementById('link').value;
-  navigator.clipboard
-    .writeText(textToCopy)
-    .then(() => {
-      alert('Link copied to clipboard!');
-    })
-    .catch((err) => {
-      console.error('Failed to copy: ', err);
-    });
+  const element = document.getElementById('link');
+  if (element) {
+    navigator.clipboard
+      .writeText(element.innerText)
+      .then(() => {
+        alert('Link copied to clipboard!');
+      })
+      .catch((err) => {
+        console.error('Failed to copy: ', err);
+      });
+  } else {
+    console.log('something wrong happened');
+  }
 };
 export function ContactUsForm() {
   return (
